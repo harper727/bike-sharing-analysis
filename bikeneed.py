@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 
-# 用脚本所在位置定位数据，避免写死绝对路径（方便他人 clone 后直接运行）
+# 用脚本所在位置定位数据
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 df = pd.read_csv(os.path.join(BASE_DIR, "bike+sharing+dataset", "day.csv"))  # 把表格读进来，存到一个叫 df 的表里
 print(df.head() ) #打印前五行
@@ -31,7 +31,7 @@ monthly_data = df.groupby(['mnth','year_label'])['cnt'].sum().unstack()
 
 #设置画布大小
 plt.figure(figsize=(10,6)) #宽10高6
-#用seaborn画两条折现
+#用seaborn画两条折线
 sns.lineplot(data=monthly_data,markers=True,linewidth=2)
 
 #添加图表细节
